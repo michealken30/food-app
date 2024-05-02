@@ -8,7 +8,8 @@ const Header = () => {
         <h2>Order your Favourite Food here</h2>
         <p>
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur fuga
-          ducimus quidem inventore dolores nesciunt.
+          ducimus quidem inventore dolores nesciuntducimus quidem inventore
+          dolores nesciunt.
         </p>
         <button>View Menu</button>
       </div>
