@@ -33,7 +33,7 @@ const Navbar = () => {
           contact us
         </li>
       </ul>
-      k
+
       <div className="navbar-right">
         <img src={assets.search_icon} alt="" />
         <div className="navbar-search-icon">
