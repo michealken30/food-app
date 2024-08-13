@@ -5,6 +5,7 @@ import foodRouter from "./routes/foodRoutes.js";
 import userRouter from "./routes/userRoutes.js";
 import "dotenv/config";
 import cartRouter from "./routes/cartRoutes.js";
+import orderRouter from "./routes/orderRoutes.js";
 
 const app = express();
 const port = 4000;
@@ -18,6 +19,7 @@ app.use("/api/food", foodRouter);
 app.use("/images", express.static("uploads"));
 app.use("/api/user", userRouter);
 app.use("/api/cart", cartRouter);
+app.use("/api/order", orderRouter);
 
 app.get("/", (req, res) => {
   res.send("Api working");
@@ -26,5 +28,3 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
   console.log(`Server Started on http://localhost:${port}`);
 });
-
-// mongodb+srv://kennethoshogwe2:ORvShSK7FfIo2Xov@cluster0.ldkoji3.mongodb.net/?
