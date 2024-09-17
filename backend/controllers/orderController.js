@@ -1,4 +1,3 @@
-import { CurrencyCodes } from "validator/lib/isISO4217.js";
 import orderModel from "../models/orderModel.js";
 
 import userModel from "../models/userModel.js";
@@ -55,6 +54,7 @@ const placeOrder = async (req, res) => {
 
 const verifyOrder = async (req, res) => {
   const { orderId, success } = req.body;
+  console.log(req.body);
 
   try {
     if (success === "true") {
