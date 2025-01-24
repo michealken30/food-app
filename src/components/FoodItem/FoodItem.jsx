@@ -8,11 +8,13 @@ const FoodItem = ({ id, name, price, description, image }) => {
   const { cartItems, addToCart, setCartItems, removeFromCart, url } =
     useContext(StoreContext);
 
+  const currentCartItem = cartItems ? cartItems[id] : 0; // Add safety check
+
   return (
     <div className="food-item">
       <div className="food-item-img-container">
         <img src={url + "/images/" + image} alt="" className="food-item-img" />
-        {!cartItems[id] ? (
+        {!currentCartItem ? ( // Use the safe variable
           <img
             className="add"
             onClick={() => addToCart(id)}
@@ -24,7 +26,7 @@ const FoodItem = ({ id, name, price, description, image }) => {
               onClick={() => removeFromCart(id)}
               src={assets.remove_icon_red}
             />
-            <p>{cartItems[id]}</p>
+            <p>{currentCartItem}</p>
             <img
               onClick={() => addToCart(id)}
               src={assets.add_icon_green}
