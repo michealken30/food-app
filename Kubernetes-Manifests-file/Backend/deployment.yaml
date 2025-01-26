@@ -28,37 +28,52 @@ spec:
           image: 970547377227.dkr.ecr.us-east-1.amazonaws.com/backend:2
           imagePullPolicy: Always
           env:
-            - name: MONGO_CONN_STR
-              value: mongodb://mongodb-svc:27017/todo?directConnection=true
-            - name: MONGO_USERNAME
+            # - name: MONGO_CONN_STR
+            #   value: mongodb://mongodb-svc:27017/todo?directConnection=true
+            # - name: MONGO_USERNAME
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: mongo-sec
+            #       key: username
+            # - name: MONGO_PASSWORD
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: mongo-sec
+            #       key: password
+            - name: MONGO_URI
               valueFrom:
                 secretKeyRef:
                   name: mongo-sec
-                  key: username
-            - name: MONGO_PASSWORD
+                  key: mongo-uri
+            - name: SECRET_KEY
               valueFrom:
                 secretKeyRef:
                   name: mongo-sec
-                  key: password
+                  key: secret-key
+            - name: STRIPE_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-sec
+                  key: stripe-secret-key
           ports:
-            - containerPort: 3500
+            - containerPort: 4000
           livenessProbe:
             httpGet:
               path: /healthz
-              port: 3500
+              port: 4000
             initialDelaySeconds: 2
             periodSeconds: 5
           readinessProbe:
             httpGet:
               path: /ready
-              port: 3500
+              port: 4000
             initialDelaySeconds: 5
             periodSeconds: 5
             successThreshold: 1
           startupProbe:
             httpGet:
               path: /started
-              port: 3500
+              port: 4000
             initialDelaySeconds: 0
             periodSeconds: 10
             failureThreshold: 30
