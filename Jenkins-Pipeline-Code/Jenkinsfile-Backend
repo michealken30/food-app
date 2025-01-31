@@ -82,9 +82,12 @@ pipeline {
                 sh 'trivy image ${REPOSITORY_URI}${AWS_ECR_REPO_NAME}:${BUILD_NUMBER} > trivyimage.txt' 
             }
         }
-        stage('Checkout Code') {
+         stage('Checkout') {
             steps {
-                git credentialsId: 'GITHUB', url: 'https://github.com/michealken30/food-app.git'
+                checkout([$class: 'GitSCM',
+                    branches: [[name: 'main']],
+                    userRemoteConfigs: [[url: 'https://github.com/michealken30/food-app.git',
+                        credentialsId: 'GITHUB-APP']]])
             }
         }
         stage('Update Deployment file') {
