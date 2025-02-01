@@ -5,7 +5,7 @@ metadata:
   namespace: three-tier
   labels:
     role: frontend
-    env: demo
+    env: demo  # ✅ Added env label
 spec:
   replicas: 1
   strategy:
@@ -16,10 +16,12 @@ spec:
   selector:
     matchLabels:
       role: frontend
+      env: demo  # ✅ Added env label to match the Service
   template:
     metadata:
       labels:
         role: frontend
+        env: demo  # ✅ Added env label inside template
     spec:
       imagePullSecrets:
         - name: ecr-registry-secret
